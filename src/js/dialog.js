@@ -27,6 +27,7 @@ export class Dialog {
     }
 
     resize(stageWidth, stageHeight) {
+        console.log('resize in dia')
         this.pos.x = Math.random() * (stageWidth - WIDTH);
         this.pos.y = Math.random() * (stageHeight - HEIGHT);
         this.target = this.pos.clone();
@@ -39,12 +40,14 @@ export class Dialog {
         this.pos.add(move);
 
         this.centerPos = this.pos.clone().add(this.mousePos);
+        // console.log('this.centerPos in dia' , this.centerPos)
+        // console.log('this.mousePos in dia' , this.mousePos)
 
-        this.swignDrag(ctx);
+        this.swingDrag(ctx);
         this.prevPos = this.pos.clone();
     }
 
-    swignDrag(ctx){
+    swingDrag(ctx){
         const dx = this.pos.x - this.prevPos.x;
         const speedX = Math.abs(dx) / FPS;
         const speed = Math.min(Math.max(speedX, 0), 1);
@@ -56,6 +59,7 @@ export class Dialog {
         const tmpPos = this.pos.clone().add(this.origin);
         ctx.save();
         ctx.translate(tmpPos.x, tmpPos.y);
+        console.log('tmpPos',tmpPos)
         ctx.rotate(this.rotation * Math.PI / 180);
         ctx.beginPath();
         ctx.fillStyle = '#f4e55a';

@@ -19,7 +19,7 @@ class App {
         this.curItem = null;
 
         this.items = [];
-        this.total = 1;
+        this.total = 2;
         for (let i = 0; i < this.total; i++) {
             this.items[i] = new Dialog();
         }
@@ -83,11 +83,19 @@ class App {
     }
 
     onDown(e) {
+        console.log('onDown')
         this.mousePos.x = e.clientX;
         this.mousePos.y = e.clientY;
 
         for (let i = this.items.length - 1; i >= 0; i--) {
             const item = this.items[i].down(this.mousePos.clone());
+            console.log('-------------')
+            console.log('this.mounsePos', this.mousePos)
+            console.log(i)
+            console.log(this.items)
+            console.log(this.items[i])
+            console.log(item)
+            console.log('-------------')
             if (item) {
                 this.curItem = item;
                 const index = this.items.indexOf(item);
